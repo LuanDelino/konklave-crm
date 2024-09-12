@@ -1,7 +1,7 @@
 // pages/AuthPage.tsx
 import React, { useState } from 'react';
 import FormCard from '../components/FormCard';
-import { registerUser, loginUser } from '../services/authServices';
+import { signIn, signUp } from '../services/authServices';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 
@@ -35,7 +35,7 @@ const AuthPage = () => {
         setLoading(true);
         try {
             if (isLogin) {
-                await loginUser(email, password);
+                await signIn(email, password);
                 toast({
                     title: "Login realizado com sucesso",
                     status: "success",
@@ -44,7 +44,7 @@ const AuthPage = () => {
                 });
                 navigate('/home');
             } else {
-                await registerUser(email, password, name); // Passa o nome ao registrar
+                await signUp(email, password, name); // Passa o nome ao registrar
                 toast({
                     title: "Cadastro realizado com sucesso",
                     status: "success",
