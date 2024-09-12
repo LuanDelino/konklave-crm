@@ -17,8 +17,10 @@ interface FormCardProps {
     onSubmit: () => void;
     emailValue?: string;
     passwordValue?: string;
+    nameValue?: string;
     onEmailChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onPasswordChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onNameChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     buttonText: string;
     toggleForm: () => void;
     toggleText: string;
@@ -29,8 +31,10 @@ const FormCard = ({
     onSubmit,
     emailValue = '',
     passwordValue = '',
+    nameValue = '',
     onEmailChange,
     onPasswordChange,
+    onNameChange,
     buttonText,
     toggleForm,
     toggleText,
@@ -54,8 +58,18 @@ const FormCard = ({
                     boxShadow={'lg'}
                     p={8}>
                     <Stack spacing={4}>
+                        {!title.includes('Logar') && (
+                            <FormControl id="name">
+                                <FormLabel>Nome</FormLabel>
+                                <Input
+                                    type="text"
+                                    value={nameValue}
+                                    onChange={onNameChange}
+                                />
+                            </FormControl>
+                        )}
                         <FormControl id="email">
-                            <FormLabel>Usuario</FormLabel>
+                            <FormLabel>Email</FormLabel>
                             <Input
                                 type="email"
                                 value={emailValue}
@@ -70,7 +84,6 @@ const FormCard = ({
                                 onChange={onPasswordChange}
                             />
                         </FormControl>
-                        
                         <Button
                             bg={'blue.400'}
                             color={'white'}

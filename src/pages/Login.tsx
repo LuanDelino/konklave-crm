@@ -1,3 +1,4 @@
+// pages/AuthPage.tsx
 import React, { useState } from 'react';
 import FormCard from '../components/FormCard';
 import { registerUser, loginUser } from '../services/authServices';
@@ -8,6 +9,7 @@ const AuthPage = () => {
     const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [name, setName] = useState<string>(''); // Adicione este estado
     const [loading, setLoading] = useState<boolean>(false); 
     const navigate = useNavigate();
     const toast = useToast();
@@ -16,10 +18,11 @@ const AuthPage = () => {
         setIsLogin(!isLogin);
         setEmail('');
         setPassword('');
+        setName('');
     };
 
     const handleSubmit = async () => {
-        if (!email || !password) {
+        if (!email || !password || (!isLogin && !name)) { // Verifica se o nome está presente
             toast({
                 title: "Por favor, preencha todos os campos.",
                 status: "warning",
@@ -29,7 +32,7 @@ const AuthPage = () => {
             return;
         }
 
-        setLoading(true); // Ativa o estado de carregamento
+        setLoading(true);
         try {
             if (isLogin) {
                 await loginUser(email, password);
@@ -41,7 +44,7 @@ const AuthPage = () => {
                 });
                 navigate('/home');
             } else {
-                await registerUser(email, password);
+                await registerUser(email, password, name); // Passa o nome ao registrar
                 toast({
                     title: "Cadastro realizado com sucesso",
                     status: "success",
@@ -51,7 +54,6 @@ const AuthPage = () => {
                 navigate('/home');
             }
         } catch (error: any) {
-            console.log(error)
             toast({
                 title: "Ocorreu um erro",
                 description: error.message,
@@ -70,8 +72,10 @@ const AuthPage = () => {
             onSubmit={handleSubmit}
             emailValue={email}
             passwordValue={password}
+            nameValue={name}
             onEmailChange={(e) => setEmail(e.target.value)}
             onPasswordChange={(e) => setPassword(e.target.value)}
+            onNameChange={(e) => setName(e.target.value)}
             buttonText={loading ? 'Processando...' : isLogin ? 'Logar' : 'Registrar'}
             toggleForm={toggleForm}
             toggleText={isLogin ? 'Não tem usuário? Registre-se' : 'Já tem usuário? Entre'}
