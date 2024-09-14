@@ -8,7 +8,7 @@ import Orders from './pages/Orders';
 import OrderDetails from './pages/OrdersDetails';
 import DefaultLayout from './layout/default'; // Verifique o caminho do import
 import Users from './pages/Users';
-import Config from './pages/Config';
+import Config from './pages/Profile';
 
 const App = () => {
   return (
@@ -25,7 +25,7 @@ const App = () => {
           <Route path="orders" element={<Orders />} />
           <Route path="orders/:id" element={<OrderDetails />} />
           <Route path="users" element={<Users />} />
-          <Route path="config" element={<Config />} />
+          <Route path="profile" element={<Config />} />
         </Route>
       </Routes>
     </Router>

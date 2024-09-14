@@ -1,11 +1,11 @@
 import { Box, Heading } from '@chakra-ui/react';
 
-const Config = () => {
+const Profile = () => {
   return (
     <Box textAlign="center" p={5}>
-      <Heading mb={4}>Config Page</Heading>
+      <Heading mb={4}>Profile Page</Heading>
     </Box>
   );
 };
 
-export default Config;
+export default Profile;

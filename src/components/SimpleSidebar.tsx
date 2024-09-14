@@ -17,7 +17,7 @@ import {
 import {
   FaHouse,
   FaUser,
-  FaBoxesStacked,
+  FaBox,
   FaCartArrowDown,
   FaSliders,
   FaBars
@@ -34,10 +34,10 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FaHouse, link: '/home' },
-  { name: 'Pedidos', icon: FaBoxesStacked, link: '/orders' },
+  { name: 'Pedidos', icon: FaBox, link: '/orders' },
   { name: 'Produtos', icon: FaCartArrowDown, link: '/products' },
-  { name: 'Usuários', icon: FaUser, link: '/users' },
-  { name: 'Configurações', icon: FaSliders, link: '/config' },
+  { name: 'Usuários', icon: FaSliders, link: '/users' },
+  { name: 'Meu Perfil', icon: FaUser, link: '/profile' },
 ]
 
 export default function SimpleSidebar() {
