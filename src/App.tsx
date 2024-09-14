@@ -7,6 +7,8 @@ import ProductDetails from './pages/ProductsDetails';
 import Orders from './pages/Orders';
 import OrderDetails from './pages/OrdersDetails';
 import DefaultLayout from './layout/default'; // Verifique o caminho do import
+import Users from './pages/Users';
+import Config from './pages/Config';
 
 const App = () => {
   return (
@@ -22,6 +24,8 @@ const App = () => {
           <Route path="products/:id" element={<ProductDetails />} />
           <Route path="orders" element={<Orders />} />
           <Route path="orders/:id" element={<OrderDetails />} />
+          <Route path="users" element={<Users />} />
+          <Route path="config" element={<Config />} />
         </Route>
       </Routes>
     </Router>
